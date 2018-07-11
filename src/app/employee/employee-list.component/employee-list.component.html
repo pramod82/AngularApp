@@ -1,0 +1,44 @@
+<app-employee-count 
+[gender]='empCount'
+*ngIf="empCount"
+(countRadioButtonSelectionChanged)='onEmployeeCountRadioButtonChange($event)' (notify)='onNotifyClicked($event)'></app-employee-count>
+{{showMessage}}
+
+<table>
+    <thead>
+        <tr>
+            <th>Employee Code</th>
+            <th>Employee Name</th>
+            <th>Gender</th>
+            <th>Employee Salary</th>
+            <th>Employee Date Of Birth</th>
+            <!-- <th>Index</th>
+            <th>Is First</th>
+            <th>Is Last</th> -->
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor='let employee of employees; trackBy:trakByEmployee;'>
+        <tr  *ngIf='selectedEmployeeCountRadioButton == "All" || selectedEmployeeCountRadioButton == employee.gender' [ngSwitch]='employee.gender'>
+            <td>{{employee.code | uppercase}}</td>
+            <td>{{employee.name | employeeTitle:employee.gender}}</td>
+            <td *ngSwitchCase='"Male"' class="green">{{employee.gender}}</td>
+            <td *ngSwitchCase='"Female"' class="red">{{employee.gender}}</td>
+            <td *ngSwitchDefault class="default">{{employee.gender}}</td>
+            <td>{{employee.annualSalary | currency:'USD':true:'1.2-3'}}</td>
+            <td>{{employee.dateOfBirth | date:'dd/MM/y'}}</td>
+            <!-- <td>{{i+1}}</td>
+            <td>{{isFirst}}</td>
+            <td>{{isLast}}</td> -->
+        </tr>
+    </ng-container>
+    <tr *ngIf='!employees'>
+        <td colspan="5">{{statusMsg}}</td>
+    </tr>
+        <tr *ngIf='employees && employees == 0'>
+            <td colspan="5">No Employees to display</td>
+        </tr>
+    </tbody>
+</table>
+
+<button (click)='getEmployee()'>Refresh</button>

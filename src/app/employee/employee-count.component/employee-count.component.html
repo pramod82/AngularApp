@@ -1,0 +1,15 @@
+<div class="child-component">
+<span class="radioClass">Show: </span>
+
+
+<input type="radio" name="option" value="All" [(ngModel)]='selectedRadioButtonValue' (change)='onRedioButtonSelectionChange()'>
+<span>{{"All (" + gender?.all + ")"}}</span>
+
+<input type="radio" name="option" value="Male" [(ngModel)]='selectedRadioButtonValue' (change)='onRedioButtonSelectionChange()'>
+<span>{{"Male (" + gender?.male + ")"}}</span>
+
+<input type="radio" name="option" value="Female" [(ngModel)]='selectedRadioButtonValue' (change)='onRedioButtonSelectionChange()'>
+<span>{{"Female (" + gender?.female + ")"}}</span>
+</div>
+
+<button (click)='onClick()'>Click Me</button>

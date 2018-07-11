@@ -1,0 +1,17 @@
+<h1>{{pageHeader ? pageHeader : "No Header"}}</h1>
+
+<app-employee-list></app-employee-list>
+
+<h2 *ngIf='visible; else oddClick'>Hello Angular</h2>
+
+<button (click)="toggle()">Click</button>
+
+<ng-template #eventClick> Even Clicked </ng-template>
+<ng-template #oddClick> Odd Clicked </ng-template>
+
+<h1>Parent Component</h1>
+<input type="text" #ptext (keyup)='0'>
+
+<label>Child component updated text: {{childData}}</label>
+
+<app-test (childEvent)='childData=$event' [perantData]='ptext.value'></app-test>
