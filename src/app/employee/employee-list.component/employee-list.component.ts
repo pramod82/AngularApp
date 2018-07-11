@@ -32,9 +32,10 @@ export class EmployeeListComponent implements OnInit {
       },
       (error) => {
         this.statusMsg = 'Problem with the server. Please try again after some time';
+        console.error(error);
       });
     }
-    
+
     onEmployeeCountRadioButtonChange(ev) {
       this.selectedEmployeeCountRadioButton = ev;
     }
